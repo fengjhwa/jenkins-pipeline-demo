@@ -22,7 +22,7 @@ pipeline {
     stage('Test') {
         agent any
         steps{
-            sh 'docker run --rm -d  --name $BUILD_TAG -p 80:80 epas:flask'
+            sh 'docker run --rm -d  --name $BUILD_TAG -p 80:80 epas:test'
             sh 'curl -v `docker inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $BUILD_TAG`'
         }
         post {
